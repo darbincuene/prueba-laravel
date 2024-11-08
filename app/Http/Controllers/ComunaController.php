@@ -7,6 +7,7 @@ use  App\Models\Comuna;
 use App\Models\Municipio;
 use Illuminate\Support\Facades\DB;
 
+use function Laravel\Prompts\search;
 use function Laravel\Prompts\select;
 
 class ComunaController extends Controller
@@ -14,15 +15,21 @@ class ComunaController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
        //$comunas =Comuna::all();
         //return view('comuna.index',['comunas'=> $comunas]);
+        $search =$request->input('search');
 
         $comunas = DB::table('tb_comuna')
         ->join('tb_municipio','tb_comuna.muni_codi', '=','tb_municipio.muni_codi')
         ->select('tb_comuna.*',"tb_municipio.muni_nomb")
+        ->when($search, function ($query, $search){
+            return $query->where('tb_comuna.comu_nomb','like',"%{$search}%")
+                        ->orWhere('tb_municipio.muni_nomb','like',"%{$search}%");
+        })
         ->get();
+
         return view ('comuna.index',['comunas' => $comunas]);
     }
     

@@ -1,5 +1,4 @@
-<!doctype html>
-<html lang="en">
+<x-app-layout>
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -11,17 +10,35 @@
     <title>Darbin </title>
   </head>
   <body>
+    <x-slot name="header">
+      <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+          {{ __('listado comunas♥') }}
+      </h2>
+      
+  </x-slot>
     <div>
-        <h1>Listado de comunas</h1>
-         <a href="{{route('comuna.create')}}" class="btn btn-primary">Crear Comuna</a> 
+      <br>
+      <div class="mx-auto w-50">
+        <a href="{{route('comuna.create')}}" class="btn btn-primary ">Crear Comuna</a> 
+
+      </div>
+      
+      <div class="max-auto w-50 mb-4">
+        <form action="{{route('comuna.index')}}" method="GET" class="d-flex">
+        <input type="search" name="search" class="form-control me-2 " placeholder="Buscar" value="{{ request('search') }}">
+        <button type="submit" class="btn btn-outline-primary">Buscar</button>
+      </form>
+      </div>
+
+<br>
 
 
-        <table class="table">
-  <thead>
+  <table  class="table table-success table-striped table-bordered mx-auto w-50" style="border-width:5px; width:65%; border-color:rgb(9, 174, 240);" >
+  <thead class="table-dark">
     <tr>
-      <th scope="col">code </th>
-      <th scope="col">comunnne</th>
-      <th scope="col">Municipio</th>
+      <th>code </th>
+      <th>comunnne</th>
+      <th>Municipio</th>
       <th colspan="2">Actions</th>
     </tr>
   </thead>
@@ -57,4 +74,4 @@
 
     </div>
   </body>
-</html>
+</x-app-layout>
