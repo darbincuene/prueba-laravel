@@ -18,14 +18,14 @@
   </x-slot>
     <div>
       <br>
-      <div class="mx-auto w-50">
+      <div class="mx-auto w-50 mb-4">
         <a href="{{route('comuna.create')}}" class="btn btn-primary ">Crear Comuna</a> 
 
       </div>
-      
-      <div class="max-auto w-50 mb-4">
+
+      <div class="mx-auto w-50 d-flex justify-content-center " >
         <form action="{{route('comuna.index')}}" method="GET" class="d-flex">
-        <input type="search" name="search" class="form-control me-2 " placeholder="Buscar" value="{{ request('search') }}">
+        <input type="search" name="search" class="form-control me-2 " style="width: 350px;" placeholder="Buscar" value="{{ request('search') }}">
         <button type="submit" class="btn btn-outline-primary">Buscar</button>
       </form>
       </div>
